@@ -1,1 +1,1 @@
-Descripcion: README.md creado dentro de la carpeta la_web.
+Descripcion: README.md creado dentro de la carpeta la_web y copiado en la carpeta estandares.
