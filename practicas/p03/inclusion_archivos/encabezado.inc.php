@@ -18,5 +18,5 @@
             Bienvenido en el sitio $variable1 </h1>";
             echo "<h3> $variableext</h3>";
             echo "Nombre de archivo ejecutado: ", $_SERVER['PHP_SELF'],"&nbsp;&nbsp;&nbsp;";
-            echo " Nombre del archivo incluido : ", _FILE_ ,"</div> ";
+            echo " Nombre del archivo incluido : ", __FILE__ ,"</div> ";
         ?>
