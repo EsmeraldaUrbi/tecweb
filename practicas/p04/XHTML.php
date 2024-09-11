@@ -30,6 +30,31 @@
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
     ?>
+    <h2>Ejercicio 2</h2>
+    <p?>Proporcionar los valores de $a, $b, $c y mostrar su contenido:</p>
+    <?php
+        $a = "ManejadorSQL";
+        $b = 'MySQL';
+        $c = &$a;
 
+        echo '<h4>Resultado:</h4>';  
+
+        echo $a.'<br> <br>';
+        echo $b.'<br> <br>';
+        echo $c.'<br> <br>';
+
+        $a = "PHP server";
+        $b = &$a;
+
+        echo '<p> Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones.</p>';
+        echo '<h4>Resultado:</h4>';  
+
+        echo $a.'<br> <br>';
+        echo $b.'<br> <br>';
+        echo $c.'<br> <br>';
+
+        echo '<h4> Explicación: </h4>';
+        echo '<p>Se reasignó el valor a la variable $a y a la variable $b. El nuevo valor de la varibale $b se asignó por referencia, es decir, se le asigno el valor que tenía asignado la variable $a.</p>';
+    ?>
 </body>
 </html>
