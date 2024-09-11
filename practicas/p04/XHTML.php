@@ -74,12 +74,13 @@
         $b = "5a version de PHP";
         echo '$b: '.$b.'<br>';
 
-        $c = $b*10;
+        $c = intval($b)*10;
         echo '$c: '.$c.'<br>';
 
         $a .= $b;
         echo '$a: '.$a.'<br>';
 
+        settype($b, 'int');
         $b *= $c;
         echo '$b: '.$b.'<br>';
 
@@ -87,7 +88,41 @@
         echo '$z[]: ';
         print_r($z);
 
+        echo '<h2>Ejercicio 4</h2>';
+        echo '<p> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
+        la matriz $GLOBALS o del modificador global de PHP.</p>';
+
+        echo $GLOBALS['a']; 
+        echo '<br>';
+        echo $GLOBALS['z'][0]; 
+        echo '<br>';
+        echo $GLOBALS['b']; 
+        echo '<br>';
+        echo $GLOBALS['c']; 
+        echo '<br>';
+
         unset($a, $z, $b, $c);
     ?>
+
+    <h2>Ejercicio 5</h2>
+    <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
+    <?php
+        $a = "7 personas";
+        echo "$a <br>";
+        $b = (integer) $a;
+        echo "$b <br>";
+        $a = "9E3";
+        echo "$a <br>";
+        $c = (double) $a;
+        echo "$c <br>";
+
+        echo '<h2>Ejercicio 6</h2>';
+        echo '<p> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
+        la matriz $GLOBALS o del modificador global de PHP.</p>';
+
+    ?>
+
+
+    
 </body>
 </html>
