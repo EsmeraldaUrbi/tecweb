@@ -115,6 +115,39 @@
         echo "$a <br>";
         $c = (double) $a;
         echo "$c <br>";
+
+        unset($a, $b, $c);
+
+        echo '<h2>Ejercicio 6</h2>';
+        echo '<p> Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función var_dump(<datos>).</p>';
+
+        $a = "0";
+        $b = "TRUE";
+        $c = FALSE;
+        $d = ($a OR $b);
+        $e = ($a AND $c);
+        $f = ($a XOR $b);
+
+        var_dump($a);
+        echo '<br>';
+
+        var_dump($b);
+        echo '<br>';
+
+        var_dump($c);
+        echo '<br>';
+
+        var_dump($d);
+        echo '<br>';
+
+        var_dump($e);
+        echo '<br>';
+
+        var_dump($f);
+        echo '<br>';
+
+        echo '$c: '. var_export($c, true).'<br>';
+        echo '$e: '. var_export($e, true).'<br>';
     ?>
 
 
