@@ -115,11 +115,6 @@
         echo "$a <br>";
         $c = (double) $a;
         echo "$c <br>";
-
-        echo '<h2>Ejercicio 6</h2>';
-        echo '<p> Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
-        la matriz $GLOBALS o del modificador global de PHP.</p>';
-
     ?>
 
 
