@@ -29,6 +29,8 @@
         echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
+
+        unset($_myvar, $_var, $myvar, $var7, $_element1);
     ?>
     <h2>Ejercicio 2</h2>
     <p?>Proporcionar los valores de $a, $b, $c y mostrar su contenido:</p>
@@ -55,6 +57,37 @@
 
         echo '<h4> Explicación: </h4>';
         echo '<p>Se reasignó el valor a la variable $a y a la variable $b. El nuevo valor de la varibale $b se asignó por referencia, es decir, se le asigno el valor que tenía asignado la variable $a.</p>';
+
+        unset($a, $b, $c);
+    ?>
+
+    <h2>Ejercicio 3</h2>
+    <p>Muestra el contenido de cada variable inmediatamente después de cada asignación, verificar la evolución del tipo de estas variables (imprime todos los componentes de los arreglo):</p>
+    <?php
+        $a = "PHP5";
+        echo '$a: '.$a.'<br>';
+
+        $z[] = &$a;
+        echo '$z[]: ';
+        print_r($z);
+
+        $b = "5a version de PHP";
+        echo '$b: '.$b.'<br>';
+
+        $c = $b*10;
+        echo '$c: '.$c.'<br>';
+
+        $a .= $b;
+        echo '$a: '.$a.'<br>';
+
+        $b *= $c;
+        echo '$b: '.$b.'<br>';
+
+        $z[0] = "MySQL";
+        echo '$z[]: ';
+        print_r($z);
+
+        unset($a, $z, $b, $c);
     ?>
 </body>
 </html>
