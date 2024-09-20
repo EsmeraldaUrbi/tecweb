@@ -8,7 +8,6 @@
 <body>
     <h2>Ejercicio 1</h2>
     <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
-
     <?php
         include_once 'src/funciones.php';
         if(isset($_GET['numero']))
@@ -24,6 +23,12 @@
         imparParImpar();
     ?>
 
+    <h2>Ejercio 3</h2>
+    <p> Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
+    <?php
+        include_once 'src/funciones.php'; 
+        multiploAleatorio($_GET['numero']);
+    ?>
 
 
 
