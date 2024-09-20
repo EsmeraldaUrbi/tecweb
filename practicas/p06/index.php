@@ -37,7 +37,21 @@
         arregloASCII();
     ?>
 
-
+    <fieldset>
+        <legend><h2>Ejercicio 5</h2> </legend>
+        <form method="post">
+            Edad: <input type="text" name="edad" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required> 
+            Sexo:<select name="sexo">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                </select>
+            <input type="submit">
+        </form>
+    </fieldset>
+    <?php
+        include_once 'src/funciones.php';
+        verificarEdadSexo($_POST["edad"], $_POST["sexo"]);
+    ?>
 
     <h2>Ejemplo de POST</h2>
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
