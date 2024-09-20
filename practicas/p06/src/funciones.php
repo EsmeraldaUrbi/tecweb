@@ -52,4 +52,21 @@
         echo '<h3>R= El número '.$num.' es múltiplo de '.$numero.'</h3>';
         echo '<h3>Se encontró en '.$contador.' intentos</h3>';
     }
+
+    //EJERCICIO 4
+    function arregloASCII() {
+        $letras = array();
+        for ($i = 97; $i <= 122; $i++) {
+            $letras[$i] = chr($i); 
+        }
+        
+        echo "<table border='1' width=100px style='text-align: center;'>";
+        foreach ($letras as $key => $value) {
+            echo '<tr>'; 
+            echo '<td>' . $key . '</td>'; 
+            echo '<td>' . $value . '</td>';
+            echo '</tr>';
+        }
+        echo "</table>";
+    }
 ?>
