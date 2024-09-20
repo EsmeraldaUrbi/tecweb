@@ -53,17 +53,26 @@
         verificarEdadSexo($_POST["edad"], $_POST["sexo"]);
     ?>
 
-    <h2>Ejemplo de POST</h2>
-    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
-    </form>
-    <br>
-
-
-    <?php
+    <fieldset>
+        <legend><h2>Ejercicio 6</h2></legend>
+        <p> Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad.</p>
         
+        <h2>Consulta de Vehículos</h2>
+        <form method="post">
+            Matrícula: <input type="text" name="matricula">
+            <input type="submit" value="Consultar">
+            <br><br>
+        </form>
+        <form method="post">
+            <input type="submit" name="todos" value="Mostrar Todos los Autos" style="margin-bottom: 20px">
+        </form>
+    </fieldset>
+    <?php
+        include_once 'src/funciones.php';
+        $matricula = isset($_POST["matricula"]) ? $_POST["matricula"] : null;
+        $todos = isset($_POST["todos"]) ? $_POST["todos"] : null;
+        mostrarVehiculos($matricula, $todos);
     ?>
+    
 </body>
 </html>
