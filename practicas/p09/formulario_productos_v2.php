@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de productos</title>
+    <title>Modificacion de productos</title>
     <style type="text/css">
         ol, ul { 
         list-style-type: none;
@@ -13,18 +13,21 @@
     </head>
 
     <body>
-    <h1>Registro de productos en Marketzone</h1>
+    <h1>Modificacion de productos en Marketzone</h1>
 
-    <form id="formularioProducto" action="http://localhost/tecweb/practicas/p9/set_producto_v2.php" method="post">
+    <form id="formularioProducto" action="http://localhost/tecweb/practicas/p09/update_producto.php" method="post">
 
     <h2>Información del Producto</h2>
         <fieldset>
         <legend>Llena los campos que estan a continuacion</legend>
         <ul>    
+            <li><input type="hidden" name="id" value="<?= isset($_GET['id']) ? htmlspecialchars($_GET['id']) : ''; ?>"></li>
+
+
             <li><label for="form-name">Nombre:</label> <input type="text" name="nombre" id="form-name" value="<?= isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : ''; ?>" onfocus="vaciar(this)" onblur="verificarNombre(this)"></li>
 
             
-            <li><legend>Marca:</legend>
+            <li><label>Marca:</label>
                 <select title="marca" name="marca" id="form-marca" onBlur="verificarMarca(this)">
                 <option value="" selected="selected">Selecciona una marca</option>
                 <option value="MAC" <?= isset($_GET['marca']) && $_GET['marca'] == 'MAC' ? 'selected' : ''; ?>>MAC</option>

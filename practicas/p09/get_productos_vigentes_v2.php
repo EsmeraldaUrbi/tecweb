@@ -26,7 +26,7 @@
         }
 
         function send2form(rowId, nombre, marca, modelo, precio, unidades, detalles, img) {     
-            // Puedes abrir un modal o redirigir a un formulario
+            
             var urlForm = "http://localhost/tecweb/practicas/p09/formulario_productos_v2.php";
             var propId = "id=" + encodeURIComponent(rowId);
             var propNombre = "nombre=" + encodeURIComponent(nombre);
