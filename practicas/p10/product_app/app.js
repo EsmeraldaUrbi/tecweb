@@ -120,3 +120,61 @@ function init() {
     var JsonString = JSON.stringify(baseJSON,null,2);
     document.getElementById("description").value = JsonString;
 }
+
+// FUNCIÓN CALLBACK DE BOTÓN "Buscar Producto"
+function buscarProducto(e) {
+    e.preventDefault();
+
+    // SE OBTIENE EL TÉRMINO DE BÚSQUEDA (ID, NOMBRE, MARCA O DETALLES)
+    var datoBusqueda = document.getElementById('search').value;
+
+    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+    var client = getXMLHttpRequest();
+    client.open('POST', './backend/read.php', true);
+    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    client.onreadystatechange = function () {
+        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+        if (client.readyState == 4 && client.status == 200) {
+            console.log('[CLIENTE]\n' + client.responseText);
+            
+            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+            let productos = JSON.parse(client.responseText);
+
+            // SE LIMPIA EL CONTENIDO ANTERIOR
+            document.getElementById("productos").innerHTML = '';
+
+            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+            if (productos.length > 0) {
+                // RECORREMOS LA LISTA DE PRODUCTOS
+                productos.forEach(function(producto) {
+                    // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
+                    let descripcion = '';
+                        descripcion += '<li>Precio: ' + producto.precio + '</li>';
+                        descripcion += '<li>Unidades: ' + producto.unidades + '</li>';
+                        descripcion += '<li>Modelo: ' + producto.modelo + '</li>';
+                        descripcion += '<li>Marca: ' + producto.marca + '</li>';
+                        descripcion += '<li>Detalles: ' + producto.detalles + '</li>';
+
+                    // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
+                    let template = '';
+                        template += `
+                            <tr>
+                                <td>${producto.id}</td>
+                                <td>${producto.nombre}</td>
+                                <td><ul>${descripcion}</ul></td>
+                            </tr>
+                        `;
+
+                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                    document.getElementById("productos").innerHTML += template;
+                });
+            } else {
+                // SI NO HAY RESULTADOS, SE MUESTRA UN MENSAJE
+                document.getElementById("productos").innerHTML = '<tr><td colspan="3">No se encontraron productos.</td></tr>';
+            }
+        }
+    };
+
+    // ENVÍA LA SOLICITUD AL SERVIDOR
+    client.send("datoBusqueda=" + encodeURIComponent(datoBusqueda));
+}
