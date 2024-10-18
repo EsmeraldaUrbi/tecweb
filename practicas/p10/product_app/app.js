@@ -85,7 +85,16 @@ function agregarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
+            if (client.readyState == 4) {
+                // Si la solicitud es exitosa
+                if (client.status == 200) {
+                    var response = JSON.parse(client.responseText);
+                    alert(response.message); // Mostrar el mensaje (éxito o error)
+                } else {
+                    // Si hay un error en la solicitud (código diferente de 200)
+                    alert("Error en la solicitud: " + client.statusText);
+                }
+            }
         }
     };
     client.send(productoJsonString);
