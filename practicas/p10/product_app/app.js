@@ -64,6 +64,11 @@ function buscarID(e) {
 function agregarProducto(e) {
     e.preventDefault();
 
+    if (!verificarFormulario()) {
+        return; // Si alguna validación falla, se detiene el proceso
+    }
+
+
     // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
     var productoJsonString = document.getElementById('description').value;
     // SE CONVIERTE EL JSON DE STRING A OBJETO
@@ -177,4 +182,133 @@ function buscarProducto(e) {
 
     // ENVÍA LA SOLICITUD AL SERVIDOR
     client.send("datoBusqueda=" + encodeURIComponent(datoBusqueda));
+}
+
+function verificarFormulario() {
+    if (!verificarNombre()) return false;
+    if (!verificarMarca()) return false;
+    if (!verificarModelo()) return false;
+    if (!verificarPrecio()) return false;
+    if (!verificarDetalles()) return false;
+    if (!verificarUnidades()) return false;
+    if (!verificarImg()) return false;
+
+    return true; // Si todo está bien, devuelve true
+}
+
+// VALIDACIONES INDIVIDUALES
+function verificarNombre() 
+{
+    var nombre = document.getElementById('name').value;
+
+    if (nombre === '') {
+        alert('Debes introducir un nombre');
+        return false;
+    }
+    if (nombre.length > 100) {
+        alert('El nombre solo debe contener como máximo 100 caracteres');
+        return false;
+    }
+    return true;
+}
+
+function verificarMarca() 
+{
+    var productoJsonString = document.getElementById('description').value;
+    var finalJSON = JSON.parse(productoJsonString);
+    var marca = finalJSON.marca;
+
+    if (marca === '') {
+        alert('Debes seleccionar una marca');
+        return false;
+    }
+    return true;
+}
+
+function verificarModelo() 
+{
+    var productoJsonString = document.getElementById('description').value;
+    var finalJSON = JSON.parse(productoJsonString);
+    var modelo = finalJSON.modelo;
+
+    if (modelo === '') {
+        alert('Debes introducir un modelo');
+        return false;
+    }
+    if (modelo.length > 25) {
+        alert('El modelo debe contener como máximo 25 caracteres');
+        return false;
+    }
+
+    var alfanumerico = /^[a-zA-Z0-9\s]*$/;
+    if (!alfanumerico.test(modelo)) {
+        alert('Solo puedes introducir números o letras en el modelo');
+        return false;
+    }
+    return true;
+}
+
+function verificarPrecio() 
+{
+    var productoJsonString = document.getElementById('description').value;
+    var finalJSON = JSON.parse(productoJsonString);
+    var precio = finalJSON.precio;
+
+    if (precio === '') {
+        alert('Debes introducir el precio del producto');
+        return false;
+    }
+
+    precio = parseFloat(precio);
+    if (precio <= 99.99) {
+        alert('El precio debe ser mayor que $99.99');
+        return false;
+    }
+    return true;
+}
+
+function verificarDetalles() 
+{
+    var productoJsonString = document.getElementById('description').value;
+    var finalJSON = JSON.parse(productoJsonString);
+    var detalles = finalJSON.detalles;
+
+    if (detalles.length > 250) {
+        alert('Los detalles deben contener como máximo 250 caracteres');
+        return false;
+    }
+    return true;
+}
+
+function verificarUnidades() 
+{
+    var productoJsonString = document.getElementById('description').value;
+    var finalJSON = JSON.parse(productoJsonString);
+    var unidades = finalJSON.unidades;
+
+    if (unidades === '') {
+        alert('Debes insertar el número de unidades');
+        return false;
+    }
+
+    unidades = parseInt(unidades);
+    if (unidades < 0) {
+        alert('El número de unidades no puede ser negativo');
+        return false;
+    }
+    return true;
+}
+
+function verificarImg() 
+{
+    var productoJsonString = document.getElementById('description').value;
+    var finalJSON = JSON.parse(productoJsonString);
+    var img = finalJSON.imagen;
+    var imgPredeterminada = './src/img/img_predeterminada.jpg';
+
+    if (img === '') {
+        finalJSON.imagen = imgPredeterminada;
+        document.getElementById('description').value = JSON.stringify(finalJSON, null, 2);
+    }
+    return true;
 }
