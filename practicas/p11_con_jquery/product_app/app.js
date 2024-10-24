@@ -80,7 +80,7 @@ $(document).ready(function() {
                         template += `
                             <tr productId="${producto.id}">
                                 <td>${producto.id}</td>
-                                <td>${producto.nombre}</td>
+                                <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
                                     <button class="product-delete btn btn-danger" data-id="${producto.id}">
@@ -112,6 +112,7 @@ $(document).ready(function() {
         var productoJsonString = document.getElementById('description').value;
         var finalJSON = JSON.parse(productoJsonString);
         finalJSON['nombre'] = document.getElementById('name').value;
+        finalJSON['id'] = document.getElementById('productId').value;
         productoJsonString = JSON.stringify(finalJSON,null,2);
 
         if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
@@ -199,6 +200,7 @@ $(document).ready(function() {
                 type: 'GET',
                 data: {id},
                 success: function(response){
+                    console.log(response);
                     let respuesta = JSON.parse(response);
                     let template_bar = '';
                     template_bar += `
@@ -219,6 +221,7 @@ $(document).ready(function() {
         $.post('./backend/product-single.php', {id}, function(response){
             const product = JSON.parse(response);
             $('#name').val(product[0].nombre);
+            $('#productId').val(product[0].id);
             let productWithoutNameAndId = {...product[0]};
             delete productWithoutNameAndId.nombre;
             delete productWithoutNameAndId.id;
