@@ -12,26 +12,19 @@
             parent::__construct($db, $user, $pass);
         }
 
+        public function getData()
+        {
+            return json_encode($this->data, JSON_PRETTY_PRINT);
+        }
+
         public function list()
         {
-            if ( $result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0") ) 
+            if ($result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0")) 
             {
-                // SE OBTIENEN LOS RESULTADOS
-                $rows = $result->fetch_all(MYSQLI_ASSOC);
-        
-                if(!is_null($rows)) 
-                {
-                    // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-                    foreach($rows as $num => $row) 
-                    {
-                        foreach($row as $key => $value) 
-                        {
-                            $this->data[$num][$key] = utf8_encode($value);
-                        }
-                    }
-                }
+                $this->data = $result->fetch_all(MYSQLI_ASSOC);
                 $result->free();
             } 
+
             else 
             {
                 die('Query Error: '.mysqli_error($this->conexion));
@@ -157,58 +150,47 @@
 
         public function search($dato) 
         {
-            if($dato) 
+            if ($dato) 
             {
-                $search = $dato;
-                // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-                $sql = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
-                if ( $result = $this->conexion->query($sql) ) 
+                $sql = "SELECT * FROM productos 
+                        WHERE (id = '{$dato}' OR nombre LIKE '%{$dato}%' 
+                            OR marca LIKE '%{$dato}%' 
+                            OR detalles LIKE '%{$dato}%') 
+                            AND eliminado = 0";
+                
+                $result = $this->conexion->query($sql);
+
+                if ($result) 
                 {
-                    // SE OBTIENEN LOS RESULTADOS
-                    $rows = $result->fetch_all(MYSQLI_ASSOC);
-                    if(!is_null($rows)) 
-                    {
-                        // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
-                        foreach($rows as $num => $row) 
-                        {
-                            foreach($row as $key => $value) 
-                            {
-                                $this->data[$num][$key] = utf8_encode($value);
-                            }
-                        }
-                    }
+                    $this->data = $result->fetch_all(MYSQLI_ASSOC);
                     $result->free();
                 } 
                 else 
                 {
-                    die('Query Error: '.mysqli_error($this->conexion));
+                    die('Query Error: ' . $this->conexion->error);
                 }
             }
+            $this->conexion->close();
         }
 
         public function single($id) {
-            if($id) {
-                $sql = "SELECT * FROM productos WHERE id = '{$id}'";
-                if ( $result = $this->conexion->query($sql) ) {
-                    $rows = $result->fetch_all(MYSQLI_ASSOC);
-                    if(!is_null($rows)) {
-                        foreach($rows as $num => $row) {
-                            foreach($row as $key => $value) {
-                                $this->data[$num][$key] = utf8_encode($value);  
-                            }
-                        }
-                    }
-                    $result->free();
-                } else {
-                    die('Query Error: '.mysqli_error($this->conexion));
-                }
-                $this->conexion->close();
-            }
-        }
+            if ($id) 
+            {
+                $sql = "SELECT * FROM productos WHERE id = '{$id}' AND eliminado = 0";
+                
+                $result = $this->conexion->query($sql);
 
-        public function getData()
-        {
-            return json_encode($this->data, JSON_PRETTY_PRINT);
+                if ($result) 
+                {
+                    $this->data = $result->fetch_all(MYSQLI_ASSOC);
+                    $result->free();
+                } 
+                else 
+                {
+                    die('Query Error: ' . $this->conexion->error);
+                }
+            }
+            $this->conexion->close();
         }
     }
 
