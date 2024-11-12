@@ -18,7 +18,6 @@
 $(document).ready(function() {
 
     let edit = false;
-
     console.log('JQuery está trabajando!')
     listadoProductos();
 
@@ -61,8 +60,8 @@ $(document).ready(function() {
 
     $('#search').keyup(function(e) {
         e.preventDefault();
+        var search = $('#search').val();
 
-        var search = $('#search').val(); 
         $.ajax({
             url: './backend/product-search.php',
             type: 'GET',
@@ -101,15 +100,17 @@ $(document).ready(function() {
                         template_bar += `<li>${producto.nombre}</li>`;
                     });
 
-                    // Actualizar el DOM con los resultados
                     document.getElementById("product-result").className = "card my-4 d-block";
                     document.getElementById("container").innerHTML = template_bar;
                     document.getElementById("products").innerHTML = template;
-                } else {
-                    // Manejar el caso en que no se encuentran productos
-                    document.getElementById("product-result").className = "card my-4 d-none"; // Ocultar el contenedor
-                    document.getElementById("container").innerHTML = ""; // Limpiar la barra de estado
-                    document.getElementById("products").innerHTML = ""; // Limpiar la tabla de productos
+
+                } 
+                
+                else 
+                {
+                    document.getElementById("product-result").className = "card my-4 d-none"; 
+                    document.getElementById("container").innerHTML = ""; 
+                    document.getElementById("products").innerHTML = "";
                 }
             },
             error: function() {
@@ -121,7 +122,7 @@ $(document).ready(function() {
     $('#product-form').submit(function(e) {
         e.preventDefault();
 
-        var yeison = {
+        var jsonProducts = {
             id: $('#productId').val(),
             nombre: $('#form-name').val(),
             marca: $('#form-brand').val(),
@@ -132,12 +133,12 @@ $(document).ready(function() {
             imagen: $('#form-img').val()
         };
 
-        var productoJsonString = JSON.stringify(yeison, null, 3);
+        var productoJsonString = JSON.stringify(jsonProducts, null, 3);
 
-        yeison['nombre'] = document.getElementById('form-name').value;
-        yeison['id'] = document.getElementById('productId').value;
+        jsonProducts['nombre'] = document.getElementById('form-name').value;
+        jsonProducts['id'] = document.getElementById('productId').value;
 
-        productoJsonString = JSON.stringify(yeison, null, 3);
+        productoJsonString = JSON.stringify(jsonProducts, null, 3);
 
         var finalJSON = JSON.parse(productoJsonString);
         productoJsonString = JSON.stringify(finalJSON, null, 3);
@@ -147,44 +148,45 @@ $(document).ready(function() {
         let correcto =[];
 
         if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
-            errores.push('Ingresa un nombre.');
+            errores.push('¡Debes ingresar un nombre!');
         }
         else if (finalJSON.nombre.length > 100) {
             errores.push('El nombre debe tener menos de 100 caracteres.');
         }
         else {
-            correcto.push('Nombre valido')
+            correcto.push('Nombre válido')
         }
 
         const marcasValidas = ['MAC', 'Maybelline', 'Huda Beauty', 'Clinique', 'Dior Beauty', 'LOreal', 'Revlon', 'Anastasia Beverlly Hills', 'Nars'];
+
         if (!finalJSON.marca || finalJSON.marca.length == 0) {
-            errores.push('Selecciona una marca.');
+            errores.push('¡Debes selccionar una marca!');
         }
         else if (!marcasValidas.includes(finalJSON.marca)) {
-            errores.push('Marca no valida.');
+            errores.push('Marca no válida.');
         }
         else {
-            correcto.push('Marca valida.')
+            correcto.push('Marca válida.')
         }
 
         if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
-            errores.push('Ingresa un modelo.');
+            errores.push('¡Debes ingresar un modelo!');
         }
         else if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
             errores.push('El modelo debe ser alfanumérico y menor a 25 caracteres.');
         }
         else {
-            correcto.push('Modelo valido.')
+            correcto.push('Modelo válido.')
         }
 
         if (!finalJSON.precio || finalJSON.precio.length == 0) {
-            errores.push('Ingresa el precio.');
+            errores.push('¡Debes ingresar un precio!');
         }
         else if (finalJSON.precio < 99.99) {
             errores.push('El precio debe ser mayor a $99.99.');
         }
         else {
-            correcto.push('Precio valido.')
+            correcto.push('Precio válido.')
         }
 
         if (finalJSON.detalles && finalJSON.detalles.length > 250) {
@@ -198,43 +200,17 @@ $(document).ready(function() {
             errores.push('El campo unidades es obligatorio');
         }
         else if (finalJSON.unidades>0){
-            correcto.push('Unidades validas')
+            correcto.push('Unidades válidas')
         }
 
         if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
-            finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
+            finalJSON.imagen = 'img/pre.png';  
         }
 
-        if (correcto.length > 1) {
-            template_bar = '<ul>';
-            template_bar+= '<li style="list-style: none;">status: Success</li>';
-            correcto.forEach(bien => {
-                template_bar += `<li style="list-style: none;">message: ${bien}</li>`;
-            });
-            template_bar += '</ul>';
-
-            document.getElementById("product-result").className = "card my-4 d-block";
-            document.getElementById("container").innerHTML = template_bar;
-
+        if (errores.length === 0 && correcto.length === 5) { // corregir
             let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-
-        }
-
-        if (errores.length > 0) {
-            template_bar = '<ul>';
-            template_bar+= '<li style="list-style: none;">status: Error</li>';
-            errores.forEach(error => {
-                template_bar += `<li style="list-style: none;">message: ${error}</li>`;
-            });
-            template_bar += '</ul>';
-
-            document.getElementById("product-result").className = "card my-4 d-block";
-            document.getElementById("container").innerHTML = template_bar;
-        }
-
-        else{
             $.ajax({
-                url: url ,
+                url: url,
                 type: 'POST',
                 contentType: 'application/json', // Especificar que estamos enviando JSON
                 data: JSON.stringify(finalJSON),
@@ -264,7 +240,33 @@ $(document).ready(function() {
                     $('#productId').val('');
                 }
             });
+
+            template_bar = '<ul>';
+            template_bar+= '<li style="list-style: none;">status: Success</li>';
+            correcto.forEach(bien => {
+                template_bar += `<li style="list-style: none;">message: ${bien}</li>`;
+            });
+            template_bar += '</ul>';
+
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
         }
+
+        if (errores.length > 0) {
+            template_bar = '<ul>';
+            template_bar+= '<li style="list-style: none;">status: Error</li>';
+            errores.forEach(error => {
+                template_bar += `<li style="list-style: none;">message: ${error}</li>`;
+            });
+            template_bar += '</ul>';
+
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+        }
+
+        /* else{
+            
+        } */
     });
 
     $(document).on('click', '.product-delete', function() {
@@ -320,7 +322,7 @@ $(document).ready(function() {
         var name = $('#form-name').val();
 
         $.ajax({
-            url: './backend/product-single.php',
+            url: './backend/product-singleByName.php',
             type: 'GET',
             data: { name: name },
             success: function(response) {

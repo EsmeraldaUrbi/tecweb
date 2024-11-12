@@ -10,7 +10,9 @@
             // Obtiene los resultados directamente en un array asociativo
             $data = $result->fetch_all(MYSQLI_ASSOC);
             $result->free();
-        } else {
+        } 
+        
+        else {
             die('Query Error: ' . mysqli_error($conexion));
         }
         
