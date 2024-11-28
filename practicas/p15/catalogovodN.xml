@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="catalogovod.xsl"?>
+<catalogoVOD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="catalogovodN.xsd">
+
+    <cuenta correo="esmeraldaurbinacinto04@gmail.com">
+        <perfiles>
+            <perfil usuario="Esme" idioma="Español"></perfil>
+            <perfil usuario="Arturito" idioma="English"></perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas region="USA">
+            <genero nombre="Terror">
+                <titulo duracion="103 minutos">
+                    <nombre>La noche del demonio</nombre>
+                </titulo>
+                <titulo duracion="123 minutos">
+                    <nombre>El conjuro</nombre>
+                </titulo>
+                <titulo duracion="101 minutos">
+                    <nombre>El resplandor</nombre>
+                </titulo>
+                <titulo duracion="145 minutos">
+                    <nombre>Siniestro</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Comedia Romántica">
+                <titulo duracion="148 minutos">
+                    <nombre>Bajo el mismo techo</nombre>
+                </titulo>
+                <titulo duracion="115 minutos">
+                    <nombre>Como si fuera la primera vez</nombre>
+                </titulo>
+                <titulo duracion="134 minutos">
+                    <nombre>Quiero robarme a la novia</nombre>
+                </titulo>
+                <titulo duracion="121 minutos">
+                    <nombre>Plan B</nombre>
+                </titulo>
+            </genero>
+        </peliculas>
+        <series region="USA">
+            <genero nombre="Ciencia Ficción">
+                <titulo duracion="112 minutos">
+                    <nombre>Stranger things</nombre>
+                </titulo>
+                <titulo duracion="124 minutos">
+                    <nombre>The expanse</nombre>
+                </titulo>
+                <titulo duracion="135 minutos">
+                    <nombre>From</nombre>
+                </titulo>
+                <titulo duracion="111 minutos">
+                    <nombre>Black Mirror</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Comedia">
+                <titulo duracion="131 minutos">
+                    <nombre>Modern Family</nombre>
+                </titulo>
+                <titulo duracion="146 minutos">
+                    <nombre>Big Bang Theory</nombre>
+                </titulo>
+                <titulo duracion="151 minutos">
+                    <nombre>Chicas en quiebra</nombre>
+                </titulo>
+                <titulo duracion="121 minutos">
+                    <nombre>Chicas buenas</nombre>
+                </titulo>
+            </genero>
+        </series>
+    </contenido>
+</catalogoVOD>

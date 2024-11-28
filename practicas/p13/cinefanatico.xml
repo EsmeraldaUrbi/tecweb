@@ -1,0 +1,14 @@
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+    <tarjeta noserie="022" visitas="5" puntos="120">
+        <nombre>Arturo Gutierrez</nombre>
+        <correo>sa2201@example.com</correo>
+        <telefono tipo="movil">2229405353</telefono>
+        <telefono tipo="casa">2211743945</telefono>
+    </tarjeta>
+    <tarjeta noserie="010" visitas="10" puntos="250">
+        <nombre>Esmeralda Urbina</nombre>
+        <correo>uice04@example.com</correo>
+        <telefono tipo="movil">2212422637</telefono>
+    </tarjeta>
+</cinefanatico>

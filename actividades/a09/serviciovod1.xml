@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogoVOD>
+    <cuenta>
+        <correo>esmeraldaurbinacinto04@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>Esme</usuario>
+                <idioma>Español</idioma>
+            </perfil>
+            <perfil>
+                <usuario>Arturito</usuario>
+                <idioma>English</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Terror</nombre>
+                <titulo>
+                    <nombre>La noche del demonio</nombre>
+                    <duracion>103 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El conjuro</nombre>
+                    <duracion>112 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El resplandor</nombre>
+                    <duracion>146 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Siniestro</nombre>
+                    <duracion>110 minutos</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Comedia Romántica</nombre>
+                <titulo>
+                    <nombre>Bajo el mismo techo</nombre>
+                    <duracion>115 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Como si fuera la primera vez</nombre>
+                    <duracion>125 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Quiero robarme a la novia</nombre>
+                    <duracion>109 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Plan B</nombre>
+                    <duracion>132 minutos</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Ciencia Ficción</nombre>
+                <titulo>
+                    <nombre>Stranger things</nombre>
+                    <duracion>42 episodios</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The expanse</nombre>
+                    <duracion>90 episodios</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>From</nombre>
+                    <duracion>24 episodios</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Black Mirror</nombre>
+                    <duracion>51 episodios</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Comedia</nombre>
+                <titulo>
+                    <nombre>Modern Family</nombre>
+                    <duracion>61 episodios</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Big Bang Theory</nombre>
+                    <duracion>93 episodios</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Chicas en quiebra</nombre>
+                    <duracion>70 episodios</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Chicas buenas</nombre>
+                    <duracion>32 episodios</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVOD>
