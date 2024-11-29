@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="catalogovod.xsl"?>
+<catalogoVOD>
+    <cuenta correo="diego.navar@gmail.com">
+        <perfiles>
+            <perfil usuario="Nava" idioma="Inglés"/>
+            <perfil usuario="Esme" idioma="Español"/>
+        <perfil usuario="Panchito" idioma="Ruso"/></perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas region="USA">
+            <genero nombre="Terror">
+                <titulo duracion="110 minutos">
+                    <nombre>Siniestro</nombre>
+                </titulo>
+                <titulo duracion="78 minutos">
+                    <nombre>REC</nombre>
+                </titulo>
+                <titulo duracion="127 minutos">
+                    <nombre>Hereditary</nombre>
+                </titulo>
+                <titulo duracion="81 minutos">
+                    <nombre>El proyecto de la bruja de blair</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Acción">
+                <titulo duracion="169 minutos">
+                    <nombre>John Wick 4</nombre>
+                </titulo>
+                <titulo duracion="98 minutos">
+                    <nombre>Nobody</nombre>
+                </titulo>
+                <titulo duracion="132 minutos">
+                    <nombre>El justiciero</nombre>
+                </titulo>
+                <titulo duracion="93 minutos">
+                    <nombre>Busqueda Implacable</nombre>
+                </titulo>
+            </genero>
+        <genero nombre="Comedia Romantica"><titulo duracion="103 minutos"><nombre>Como si fuera la primera vez</nombre></titulo><titulo duracion="125 minutos"><nombre>Bajo el mismo techo</nombre></titulo></genero></peliculas>
+
+        <series region="KOR">
+            <genero nombre="Dramas">
+                <titulo duracion="16 capitulos">
+                    <nombre>Doctora Cha</nombre>
+                </titulo>
+                <titulo duracion="12 capitulos">
+                    <nombre>Shin, abogado de divorcios</nombre>
+                </titulo>
+                <titulo duracion="20 capitulos">
+                    <nombre>Vicenzo</nombre>
+                </titulo>
+                <titulo duracion="16 capitulos">
+                    <nombre>Love Next Door</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Sci-Fi">
+                <titulo duracion="16 capitulos">
+                    <nombre>Alice In Borderland</nombre>
+                </titulo>
+                <titulo duracion="26 capitulos">
+                    <nombre>Dark</nombre>
+                </titulo>
+                <titulo duracion="35 capitulos">
+                    <nombre>Love, Death and Robots</nombre>
+                </titulo>
+                <titulo duracion="28 capitulos">
+                    <nombre>Perdidos en el espacio</nombre>
+                </titulo>
+            </genero>
+        <genero nombre="Comedia"><titulo duracion="4 temporadas"><nombre>Chicas en Quiebra</nombre></titulo><titulo duracion="2 temporadas"><nombre>Chicas buenas</nombre></titulo></genero></series>
+    </contenido>
+</catalogoVOD>
